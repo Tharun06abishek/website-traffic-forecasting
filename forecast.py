@@ -6,8 +6,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error
 
 # Load the dataset
-file_path = 'website_wata.csv'  # Update to the correct path
-web = pd.read_csv(file_path)
+  # Update to the correct path
+web = pd.read_csv("website_wata.csv")
 
 # Encode the 'Traffic Source' column
 label_encoder = LabelEncoder()
