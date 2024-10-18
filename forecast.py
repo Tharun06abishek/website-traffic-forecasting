@@ -1,13 +1,14 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error
 
 # Load the dataset
-  # Update to the correct path
-web = pd.read_csv("website_wata.csv")
+web = pd.read_csv("website_wata.csv")  # Update to the correct path if needed
 
 # Encode the 'Traffic Source' column
 label_encoder = LabelEncoder()
@@ -24,7 +25,6 @@ model.fit(X, y)
 
 # Streamlit User Interface
 st.title("Website Conversion Rate Prediction")
-
 st.write("This app predicts the conversion rate based on user inputs for various metrics related to web traffic.")
 
 # Collecting user input
@@ -50,10 +50,6 @@ predicted_conversion_rate = model.predict(new_data)[0]
 st.write(f"Predicted Conversion Rate: {predicted_conversion_rate:.2f}")
 
 # Plotting predicted vs. actual conversion rates for the last 5 samples in the dataset
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Prepare for plotting:
 last_five_actual = y.tail(5).values  # Last 5 actual conversion rates
 predicted_values = np.append(last_five_actual, predicted_conversion_rate)  # Add predicted value
 
@@ -69,3 +65,6 @@ plt.legend()
 
 # Show plot in Streamlit
 st.pyplot(plt)
+
+# Clear the plot to avoid overlapping in Streamlit
+plt.clf()
